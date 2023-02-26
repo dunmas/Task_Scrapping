@@ -8,6 +8,7 @@ import re
 prog_language = 'python'
 pages_count = 1
 keywords = ['django', 'flask']
+json_file_name = 'result.json'
 
 
 def get_headers():
@@ -61,3 +62,6 @@ if __name__ == '__main__':
         for vacancy in vacancies:
             vacancy_link = vacancy.find('a', class_='serp-item__title').attrs.get('href')
             vacancy_processing(vacancy_link, vacancies_list)
+
+    with open(json_file_name, 'w', encoding='utf8') as output:
+        json.dump(vacancies_list, output)
